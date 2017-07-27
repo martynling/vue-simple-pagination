@@ -1,6 +1,6 @@
 {
   "name": "vue-simple-pagination",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A simple Vue.js pagination component. Provide it with the pageCount and the current page and it displays the pagination.",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,12 @@
   "browserify": {
     "transform": [
       [
-        "babelify", { "presets": ["es2015"] }
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ]
+        }
       ],
       [
         "vueify"
