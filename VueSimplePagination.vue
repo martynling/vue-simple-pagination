@@ -3,7 +3,7 @@
     <nav v-if="moreThanOnePage">
         <ul :class="ulClass">
             <li :class="getClass('previous')">
-                <a @click="setCurrentPage(currentPage-1)" aria-label="Previous">
+                <a @click="setCurrentPage(Math.max(1, currentPage - 1))" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -11,7 +11,7 @@
                 {{ page.number }}</a><span v-if="pageNull(page)">...</span>
             </li>
             <li :class="getClass('next')">
-                <a @click="setCurrentPage(currentPage+1)" aria-label="Next">
+                <a @click="setCurrentPage(Math.min(pageCount, currentPage + 1))" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
