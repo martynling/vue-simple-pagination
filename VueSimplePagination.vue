@@ -1,17 +1,27 @@
 <template>
    <div class="vue-simple-pagination">
     <nav v-if="moreThanOnePage">
-        <ul :class="ulClass">
-            <li :class="getClass('previous')">
-                <a @click="setCurrentPage(Math.max(1, currentPage - 1))" aria-label="Previous">
+        <ul v-bind:class="ulClass">
+            <li v-bind:class="getClass('previous')">
+                <a v-on:click="setCurrentPage(Math.max(1, currentPage - 1))"
+                   aria-label="Previous"
+                >
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <li v-for="page in pages" :class="getClass(page.number)"><a v-if="page.number" @click="setCurrentPage(page.number)">
-                {{ page.number }}</a><span v-if="pageNull(page)">...</span>
+            <li v-for="page in pages"
+                v-bind:class="getClass(page.number)"
+            >
+                <a v-if="page.number"
+                   v-on:click="setCurrentPage(page.number)"
+                >
+                    {{ page.number }}
+                </a><span v-if="pageNull(page)">...</span>
             </li>
-            <li :class="getClass('next')">
-                <a @click="setCurrentPage(Math.min(pageCount, currentPage + 1))" aria-label="Next">
+            <li v-bind:class="getClass('next')">
+                <a v-on:click="setCurrentPage(Math.min(pageCount, currentPage + 1))"
+                   aria-label="Next"
+                >
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
@@ -25,7 +35,6 @@
         props: {
             currentPage: {
                 required: true,
-                twoWay: true,
                 type: Number
             },
             pageCount: {
@@ -115,7 +124,7 @@
             setCurrentPage(newPage) {
                 if (this.currentPage != newPage) {
                     this.currentPage = newPage;
-                    this.$dispatch('page-changed');
+                    this.$emit('page-changed', this.currentPage);
                     this.buildPageList();
                 }
             }
