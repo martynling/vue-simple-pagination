@@ -3,7 +3,7 @@ A simple Vue.js pagination component. Provide it with the pageCount and the curr
 
 # Requirements
 
-- Vue.js ^`1.0.16`
+- Vue.js ^`2.0.0`
 
 # Installation
 Assuming that you'll be using gulp or browserify to roll all your js into a single file:
@@ -24,9 +24,9 @@ After installing the plugin you can use it like this
 
 ```html
 <vue-simple-pagination
-    @page-changed="fetchData"
-    :page-count.sync="pageCount"
-    :current-page.sync="currentPage"
+    v-on:page-changed="fetchData"
+    v-bind:page-count="pageCount"
+    v-bind:current-page="currentPage"
 </vue-simple-pagination>
 ```
 
@@ -39,7 +39,7 @@ var vm = new Vue({
     },
     
     methods: {
-        fetchData() {
+        fetchData(selectedPage) {
             // Your AJAX or other code to display the data for the newly selected currentPage
         }
     }
@@ -53,4 +53,4 @@ var vm = new Vue({
 
 ## Events
 
- - `page-changed` - fired whenever the page is changed  
+ - `page-changed` - fired whenever the page is changed and passed the new page value.  
