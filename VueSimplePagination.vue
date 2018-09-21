@@ -61,28 +61,31 @@
         },
 
         methods: {
-            buildPageList() {
+            buildPageList(page) {
+                if (!page) {
+                  page = this.currentPage
+                }
                 this.pages = [];
                 if (this.pageCount > 10) {
-                    if (this.currentPage >= 7 &&  this.currentPage < this.pageCount - 5) {
+                    if (page >= 7 &&  page < this.pageCount - 5) {
                         this.makePagesRange(1, 2);
                         this.pages.push({
                             number: null
                         });
-                        this.makePagesRange(this.currentPage - 3, this.currentPage + 3);
+                        this.makePagesRange(page - 3, page + 3);
                         this.pages.push({
                             number: null
                         });
                         this.makePagesRange(this.pageCount - 1, this.pageCount);
 
-                    } else if (this.currentPage < 7) {
+                    } else if (page < 7) {
                         this.makePagesRange(1, 8);
                         this.pages.push({
                             number: null
                         });
                         this.makePagesRange(this.pageCount - 1, this.pageCount);
 
-                    } else if (this.currentPage >= this.pageCount - 5) {
+                    } else if (page >= this.pageCount - 5) {
                         this.makePagesRange(1, 2);
                         this.pages.push({
                             number: null
@@ -123,9 +126,8 @@
 
             setCurrentPage(newPage) {
                 if (this.currentPage != newPage) {
-                    this.currentPage = newPage;
-                    this.$emit('page-changed', this.currentPage);
-                    this.buildPageList();
+                    this.$emit('page-changed', newPage);
+                    this.buildPageList(newPage);
                 }
             }
         }
