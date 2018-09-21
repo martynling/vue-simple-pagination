@@ -67,7 +67,7 @@
                 }
                 this.pages = [];
                 if (this.pageCount > 10) {
-                    if (page >= 7 &&  page < this.pageCount - 5) {
+                    if (page >= 7 &&  page < this.pageCount - 4) {
                         this.makePagesRange(1, 2);
                         this.pages.push({
                             number: null
@@ -85,7 +85,7 @@
                         });
                         this.makePagesRange(this.pageCount - 1, this.pageCount);
 
-                    } else if (page >= this.pageCount - 5) {
+                    } else if (page >= this.pageCount - 4) {
                         this.makePagesRange(1, 2);
                         this.pages.push({
                             number: null
